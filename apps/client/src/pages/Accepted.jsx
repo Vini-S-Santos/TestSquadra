@@ -23,13 +23,10 @@ const Accepted = () => {
             key={lead.id}
             className="flex bg-white border rounded-lg shadow mb-4"
           >
-            {/* Avatar com inicial */}
             <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gray-200 text-orange-500 text-3xl m-4">
               {lead.fullName?.[0] || "?"}
             </div>
-            {/* Info */}
             <div className="flex-1 p-3">
-              {/* Nome + Data */}
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-bold text-base">{lead.fullName}</span>
                 {lead.acceptedAt && (
@@ -38,7 +35,6 @@ const Accepted = () => {
                   </span>
                 )}
               </div>
-              {/* Linha: Localização, Categoria, JobID, Valor */}
               <div className="flex flex-wrap items-center gap-4 text-sm mb-2 text-gray-600">
                 <span className="flex items-center gap-1">
                   <FaMapMarkerAlt className="text-gray-400" />
@@ -55,12 +51,10 @@ const Accepted = () => {
                   ${lead.price?.toFixed(2)} Lead Invitation
                 </span>
               </div>
-              {/* Email e Phone */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-2">
                 <span className="text-orange-500">{lead.phone}</span>
                 <span className="text-orange-500">{lead.email}</span>
               </div>
-              {/* Descrição */}
               <div className="text-gray-700 text-sm">
                 {lead.description}
               </div>

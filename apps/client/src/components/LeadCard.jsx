@@ -1,4 +1,5 @@
 import api from "../services/api";
+import { FaMapMarkerAlt, FaToolbox } from "react-icons/fa";
 
 const LeadCard = ({ lead, onUpdate }) => {
   const handleAccept = async () => {
@@ -36,10 +37,17 @@ const LeadCard = ({ lead, onUpdate }) => {
       <div className="border-t border-gray-200" />
 
       <div className="text-sm text-gray-700 flex flex-wrap items-center gap-x-4 px-4 py-3">
-        <div className="flex items-center gap-1">📍 {lead.suburb}</div>
-        <div className="flex items-center gap-1">💼 {lead.category}</div>
+        <div className="flex items-center gap-1">
+          <FaMapMarkerAlt className="text-gray-400" />
+          {lead.suburb}
+        </div>
+        <div className="flex items-center gap-1">
+          <FaToolbox className="text-gray-400" />
+          {lead.category}
+        </div>
         <div>Job ID: {lead.id}</div>
       </div>
+
 
       <div className="border-t border-gray-200" />
 
