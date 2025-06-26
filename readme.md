@@ -16,7 +16,7 @@ Preparado para rodar localmente ou totalmente com Docker Compose.
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/leads-management.git
+git clone git@github.com:Vini-S-Santos/TestSquadra.git
 cd leads-management
 
 # Suba o sistema (front e back)
