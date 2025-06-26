@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./apps/server
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+    command: sh -c "npm run seed && npm start"
+    volumes:
+      - ./apps/server:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./apps/client
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=development
+      # Use o endpoint abaixo se o front faz chamadas para o back
+      - VITE_API_URL=http://backend:3001
