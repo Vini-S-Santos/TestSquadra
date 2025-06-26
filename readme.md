@@ -62,7 +62,7 @@ VITE_API_URL=http://localhost:3001
 ## Estrutura do Projeto
 
 ```
-leads-management/
+TestSquadra/
 │
 ├─ apps/
 │   ├─ client/   # Frontend React (Vite)
