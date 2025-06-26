@@ -25,6 +25,7 @@ export const initDB = async () => {
       createdAt TEXT
     );
   `);
-};
 
+  return db;
+};
 export const getDB = () => db;
