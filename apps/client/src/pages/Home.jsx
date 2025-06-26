@@ -15,14 +15,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Leads Pendentes</h1>
+    <div className="px-4 py-4">
       {leads.length > 0 ? (
         leads.map((lead) => (
           <LeadCard key={lead.id} lead={lead} onUpdate={fetchLeads} />
         ))
       ) : (
-        <p className="text-gray-500">Nenhum lead pendente.</p>
+        <p className="text-gray-500 text-center py-4">No pending leads.</p>
       )}
     </div>
   );

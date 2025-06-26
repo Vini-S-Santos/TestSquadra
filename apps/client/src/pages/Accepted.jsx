@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { FaMapMarkerAlt, FaToolbox } from "react-icons/fa";
 
 const Accepted = () => {
   const [leads, setLeads] = useState([]);
@@ -15,20 +16,55 @@ const Accepted = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Leads Aceitos</h1>
+      <h1 className="text-2xl font-bold mb-6">Leads Aceitos</h1>
       {leads.length > 0 ? (
         leads.map((lead) => (
           <div
             key={lead.id}
-            className="border p-4 rounded shadow mb-4 bg-white"
+            className="flex bg-white border rounded-lg shadow mb-4"
           >
-            <h2 className="text-xl font-bold">{lead.fullName}</h2>
-            <p><strong>Email:</strong> {lead.email}</p>
-            <p><strong>Phone:</strong> {lead.phone}</p>
-            <p><strong>Suburb:</strong> {lead.suburb}</p>
-            <p><strong>Category:</strong> {lead.category}</p>
-            <p><strong>Description:</strong> {lead.description}</p>
-            <p><strong>Final Price:</strong> ${lead.price}</p>
+            {/* Avatar com inicial */}
+            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gray-200 text-orange-500 text-3xl m-4">
+              {lead.fullName?.[0] || "?"}
+            </div>
+            {/* Info */}
+            <div className="flex-1 p-3">
+              {/* Nome + Data */}
+              <div className="flex items-center gap-2 mb-1">
+                <span className="font-bold text-base">{lead.fullName}</span>
+                {lead.acceptedAt && (
+                  <span className="text-gray-400 text-xs">
+                    {new Date(lead.acceptedAt).toLocaleString("pt-BR")}
+                  </span>
+                )}
+              </div>
+              {/* Linha: Localização, Categoria, JobID, Valor */}
+              <div className="flex flex-wrap items-center gap-4 text-sm mb-2 text-gray-600">
+                <span className="flex items-center gap-1">
+                  <FaMapMarkerAlt className="text-gray-400" />
+                  {lead.suburb}
+                </span>
+                <span className="flex items-center gap-1">
+                  <FaToolbox className="text-gray-400" />
+                  {lead.category}
+                </span>
+                <span>
+                  Job ID: <span className="font-semibold">{lead.jobId}</span>
+                </span>
+                <span className="font-semibold text-orange-500">
+                  ${lead.price?.toFixed(2)} Lead Invitation
+                </span>
+              </div>
+              {/* Email e Phone */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-2">
+                <span className="text-orange-500">{lead.phone}</span>
+                <span className="text-orange-500">{lead.email}</span>
+              </div>
+              {/* Descrição */}
+              <div className="text-gray-700 text-sm">
+                {lead.description}
+              </div>
+            </div>
           </div>
         ))
       ) : (
