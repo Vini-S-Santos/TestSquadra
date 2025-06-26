@@ -2,26 +2,52 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import { FaMapMarkerAlt, FaToolbox, FaPhone, FaEnvelope } from "react-icons/fa";
 
+function formatDate(dateString) {
+  try {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    if (isNaN(date)) return "";
+
+    const datePart = date.toLocaleString("en-US", {
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+    });
+    const timePart = date.toLocaleString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }).toLowerCase();
+    return `${datePart.replace(",", "")} @ ${timePart}`;
+  } catch (error) {
+    console.error("Error:", error);
+    return "";
+  }
+}
+
 const Accepted = () => {
   const [leads, setLeads] = useState([]);
 
-  useEffect(() => {
-    const fetchAccepted = async () => {
+useEffect(() => {
+  const fetchAccepted = async () => {
+    try {
       const res = await api.get("/accepted");
       setLeads(res.data);
-    };
-
-    fetchAccepted();
-  }, []);
+    } catch (error) {
+      console.error("Error:", error);
+      setLeads([]); 
+    }
+  };
+  fetchAccepted();
+}, []);
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-6">Leads Aceitos</h1>
       {leads.length > 0 ? (
         leads.map((lead) => (
           <div
             key={lead.id}
-            className="bg-white border rounded shadow mb-4"
+            className="bg-white border-gray-300 rounded shadow mb-4"
           >
             <div className="flex items-center px-4 pt-4 pb-2">
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 text-orange-500 text-2xl mr-4">
@@ -31,13 +57,7 @@ const Accepted = () => {
                 <div className="font-bold text-base">{lead.fullName}</div>
                 {lead.createdAt && (
                   <div className="text-xs text-gray-400">
-                    {new Date(lead.createdAt).toLocaleString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {formatDate(lead.createdAt)}
                   </div>
                 )}
               </div>
@@ -50,7 +70,9 @@ const Accepted = () => {
               <div className="flex items-center gap-1">
                 <FaToolbox className="text-gray-400" /> {lead.category}
               </div>
-              <div>Job ID: <span className="font-semibold">{lead.id}</span></div>
+              <div>
+                Job ID: <span className="font-semibold">{lead.id}</span>
+              </div>
               <div className="font-semibold text-gray-400">
                 ${lead.price?.toFixed(2)} Lead Invitation
               </div>

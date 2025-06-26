@@ -5,10 +5,15 @@ import LeadCard from "../components/LeadCard";
 const Home = () => {
   const [leads, setLeads] = useState([]);
 
-  const fetchLeads = async () => {
+const fetchLeads = async () => {
+  try {
     const res = await api.get("/");
     setLeads(res.data.filter((lead) => lead.status === "pending"));
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    setLeads([]); 
+  }
+};
 
   useEffect(() => {
     fetchLeads();

@@ -2,15 +2,24 @@ import api from "../services/api";
 import { FaMapMarkerAlt, FaToolbox } from "react-icons/fa";
 
 const LeadCard = ({ lead, onUpdate }) => {
-  const handleAccept = async () => {
+
+const handleAccept = async () => {
+  try {
     await api.post(`/${lead.id}/accept`);
     onUpdate();
-  };
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 
-  const handleDecline = async () => {
+const handleDecline = async () => {
+  try {
     await api.post(`/${lead.id}/decline`);
     onUpdate();
-  };
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 
   return (
     <div className="bg-white border border-gray-200 rounded mb-4 overflow-hidden">
