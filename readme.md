@@ -18,6 +18,7 @@ Preparado para rodar localmente ou totalmente com Docker Compose.
 # Clone o repositório
 git clone git@github.com:Vini-S-Santos/TestSquadra.git
 cd leads-management
+renomeie os .env.exemple para .env
 
 # Suba o sistema (front e back)
 docker-compose up --build
