@@ -22,7 +22,7 @@ pnpm-debug.log*
 **/dist/
 **/build/
 **/.env
-**/.env.*
+
 
 # Vite (frontend)
 .vite
