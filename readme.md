@@ -86,6 +86,28 @@ VITE_API_URL=http://localhost:3001
 
 ---
 
+## Testes
+
+### Frontend
+
+O projeto utiliza [Vitest](https://vitest.dev/) e [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) para testes unitários e de integração.
+
+Para rodar os testes:
+
+```bash
+cd apps/client
+npm test
+```
+
+Para rodar os testes em modo watch (recomendado durante o desenvolvimento):
+
+```bash
+npm run test:watch
+```
+
+
+---
+
 ## Comandos Úteis
 
 - Parar todos containers:\
@@ -98,4 +120,3 @@ VITE_API_URL=http://localhost:3001
 ## Contato
 
 Dúvidas? Abra uma issue ou envie um e-mail para [visouza0@gmail.com](mailto\:visouza0@gmail.com)
-
