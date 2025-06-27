@@ -17,7 +17,7 @@ Preparado para rodar localmente ou totalmente com Docker Compose.
 ```bash
 # Clone o repositório
 git clone git@github.com:Vini-S-Santos/TestSquadra.git
-cd leads-management
+cd TestSquadra
 renomeie os .env.exemple para .env
 
 # Suba o sistema (front e back)
